@@ -9,11 +9,10 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         SceneManager sceneManager = new SceneManager(stage);
-        sceneManager.showLoginView();
+        sceneManager.showSplashView();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-
 }
