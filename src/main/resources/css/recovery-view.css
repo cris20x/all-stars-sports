@@ -4,14 +4,13 @@
 }
 
 .titulo {
-    -fx-font-size: 28px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-text-fill: #1b1f3b;
-    -fx-text-alignment: center;
 }
 
 .subtitulo {
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
     -fx-font-weight: bold;
     -fx-text-fill: #555a75;
 }
@@ -36,7 +35,7 @@
 }
 
 .button {
-    -fx-background-color: #0073FF;
+    -fx-background-color: #1b1f3b;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-padding: 8 20 8 20;
@@ -56,9 +55,6 @@
     -fx-background-radius: 5px;
 }
 
-.button-link {
-    -fx-background-color: transparent;
-    -fx-text-fill: #1b1f3b;
-    -fx-font-weight: normal;
-    -fx-padding: 4 8 4 8;
+.button-secundario:hover {
+    -fx-background-color: #e8e9f1;
 }
