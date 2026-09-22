@@ -35,15 +35,13 @@ public class LoginController implements Initializable {
     private Button btnIniciarSesion;
 
     public LoginController() {
-
         this.authService = null;
         this.sceneManager = null;
     }
 
     public LoginController(
             AuthService authService,
-            SceneManager sceneManager
-    ) {
+            SceneManager sceneManager) {
 
         this.authService = authService;
         this.sceneManager = sceneManager;
@@ -52,50 +50,36 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(
             URL url,
-            ResourceBundle rb
-    ) {
+            ResourceBundle rb) {
     }
-
-    // =========================
-    // LOGIN
-    // =========================
 
     @FXML
     public void handleLogin() {
-
         if (authService == null
                 || sceneManager == null) {
-
             return;
         }
 
         try {
-
             LoginDTORequest request =
                     new LoginDTORequest(
                             txtFieldEmail.getText(),
                             txtFieldPassword.getText()
                     );
-
             LoginDTOResponse response =
                     authService.login(request);
 
             SesionUsuario.getInstance()
                     .iniciarSesion(response);
-
             sceneManager.showDashboardView();
-
         } catch (RuntimeException e) {
-
             sceneManager.showAlert(
                     "Error de inicio de sesión",
                     "No se pudo iniciar sesión",
                     e.getMessage(),
                     AlertType.ERROR
             );
-
         } catch (Exception e) {
-
             sceneManager.showAlert(
                     "Error inesperado",
                     "Ocurrió un problema",
@@ -105,19 +89,11 @@ public class LoginController implements Initializable {
         }
     }
 
-    // =========================
-    // REGISTRO
-    // =========================
-
     @FXML
     public void handleRegister() {
-
         try {
-
             sceneManager.showRegisterView();
-
         } catch (Exception e) {
-
             sceneManager.showAlert(
                     "Error",
                     "No se pudo abrir el registro",
@@ -127,18 +103,17 @@ public class LoginController implements Initializable {
         }
     }
 
-    // =========================
-    // RECUPERACIÓN
-    // =========================
-
     @FXML
     public void handleRecovery() {
-
-        sceneManager.showAlert(
-                "Recuperación",
-                "Recuperación de contraseña",
-                "La pantalla de recuperación se implementará próximamente.",
-                AlertType.INFORMATION
-        );
+        try {
+            sceneManager.showRecoveryView();
+        } catch (Exception e) {
+            sceneManager.showAlert(
+                    "Error",
+                    "No se pudo abrir la recuperación",
+                    e.getMessage(),
+                    AlertType.ERROR
+            );
+        }
     }
 }

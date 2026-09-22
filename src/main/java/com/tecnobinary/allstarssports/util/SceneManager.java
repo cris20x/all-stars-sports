@@ -1,5 +1,7 @@
 package main.java.com.tecnobinary.allstarssports.util;
 
+import java.io.IOException;
+
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +13,7 @@ import javafx.util.Duration;
 
 import main.java.com.tecnobinary.allstarssports.controller.DashboardController;
 import main.java.com.tecnobinary.allstarssports.controller.LoginController;
+import main.java.com.tecnobinary.allstarssports.controller.RecoveryController;
 import main.java.com.tecnobinary.allstarssports.controller.RegisterController;
 import main.java.com.tecnobinary.allstarssports.repository.AuthRepository;
 import main.java.com.tecnobinary.allstarssports.repository.EquipoRepository;
@@ -21,11 +24,10 @@ public class SceneManager {
 
     private final Stage stage;
 
-    private boolean splashMostrado = false;
+    private final AuthService authService;
 
     private double windowX = Double.NaN;
     private double windowY = Double.NaN;
-
     private double windowWidth = Double.NaN;
     private double windowHeight = Double.NaN;
 
@@ -33,135 +35,92 @@ public class SceneManager {
 
     public SceneManager(Stage stage) {
         this.stage = stage;
+        AuthRepository authRepository =
+                new AuthRepository();
+        this.authService =
+                new AuthService(authRepository);
     }
-
-    // =========================
-    // SPLASH
-    // =========================
-
-    public void showSplashView() throws Exception {
-
-        if (splashMostrado) {
-            showLoginView();
-            return;
-        }
-
-        splashMostrado = true;
-
+    public void showSplashView()
+            throws IOException {
         FXMLLoader loader =
                 new FXMLLoader(
                         getClass().getResource(
                                 "/main/resources/view/splash-view.fxml"
                         )
                 );
-
-        Parent root = loader.load();
-
-        Scene scene =
-                new Scene(
-                        root,
-                        600,
-                        400
-                );
-
-        stage.setScene(scene);
-
+        Parent root =
+                loader.load();
+        stage.setScene(
+                new Scene(root, 600, 400)
+        );
         stage.setResizable(false);
-
         stage.centerOnScreen();
-
         stage.show();
-
-        PauseTransition pause =
+        PauseTransition pausa =
                 new PauseTransition(
                         Duration.seconds(1.5)
                 );
 
-        pause.setOnFinished(event -> {
-
+        pausa.setOnFinished(event -> {
+            guardarEstadoVentana();
             try {
-
-                guardarEstadoVentana();
-
                 showLoginView();
-
-            } catch (Exception e) {
-
-                e.printStackTrace();
+            } catch (IOException e) {
+                showAlert(
+                        "Error",
+                        "No se pudo abrir el inicio de sesión",
+                        e.getMessage(),
+                        AlertType.ERROR
+                );
             }
         });
-
-        pause.play();
+        pausa.play();
     }
 
-    // =========================
-    // LOGIN
-    // =========================
-
-    public void showLoginView() throws Exception {
-
+    public void showLoginView()
+            throws IOException {
         FXMLLoader loader =
                 new FXMLLoader(
                         getClass().getResource(
                                 "/main/resources/view/login-view.fxml"
                         )
                 );
+        loader.setControllerFactory(
+                type -> {
+                    if (type == LoginController.class) {
 
-        loader.setControllerFactory(clazz -> {
-
-            if (clazz == LoginController.class) {
-
-                AuthRepository authRepository =
-                        new AuthRepository();
-
-                AuthService authService =
-                        new AuthService(
-                                authRepository
+                        return new LoginController(
+                                authService,
+                                this
                         );
+                    }
 
-                return new LoginController(
-                        authService,
-                        this
-                );
-            }
+                    try {
 
-            try {
+                        return type.getDeclaredConstructor()
+                                .newInstance();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
 
-                return clazz
-                        .getDeclaredConstructor()
-                        .newInstance();
+        Parent root =
+                loader.load();
 
-            } catch (Exception e) {
-
-                throw new RuntimeException(
-                        "Error al crear el controlador: "
-                        + e.getMessage()
-                );
-            }
-        });
-
-        Parent root = loader.load();
+        stage.setResizable(true);
+        stage.setMinWidth(500);
+        stage.setMinHeight(350);
 
         cambiarEscena(
                 root,
                 600,
                 400
         );
-
-        stage.setResizable(true);
-
-        stage.setMinWidth(500);
-        stage.setMinHeight(350);
-
-        restaurarEstadoVentana();
     }
 
-    // =========================
-    // REGISTRO
-    // =========================
-
-    public void showRegisterView() throws Exception {
-
+    public void showRegisterView()
+            throws IOException {
         FXMLLoader loader =
                 new FXMLLoader(
                         getClass().getResource(
@@ -169,231 +128,226 @@ public class SceneManager {
                         )
                 );
 
-        loader.setControllerFactory(clazz -> {
-
-            if (clazz == RegisterController.class) {
-
-                AuthRepository authRepository =
-                        new AuthRepository();
-
-                AuthService authService =
-                        new AuthService(
-                                authRepository
+        loader.setControllerFactory(
+                type -> {
+                    if (type == RegisterController.class) {
+                        return new RegisterController(
+                                authService,
+                                this
                         );
+                    }
 
-                return new RegisterController(
-                        authService,
-                        this
-                );
-            }
+                    try {
 
-            try {
+                        return type.getDeclaredConstructor()
+                                .newInstance();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
 
-                return clazz
-                        .getDeclaredConstructor()
-                        .newInstance();
+        Parent root =
+                loader.load();
 
-            } catch (Exception e) {
-
-                throw new RuntimeException(
-                        "Error al crear el controlador: "
-                        + e.getMessage()
-                );
-            }
-        });
-
-        Parent root = loader.load();
+        stage.setResizable(true);
+        stage.setMinWidth(580);
+        stage.setMinHeight(580);
 
         cambiarEscena(
                 root,
                 700,
                 600
         );
-
-        stage.setResizable(true);
-
-        stage.setMinWidth(600);
-        stage.setMinHeight(580);
-
-        restaurarEstadoVentana();
     }
 
-    // =========================
-    // DASHBOARD
-    // =========================
+    public void showRecoveryView()
+            throws IOException {
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/main/resources/view/recovery-view.fxml"
+                        )
+                );
 
-    public void showDashboardView() throws Exception {
+        loader.setControllerFactory(
+                type -> {
+                    if (type == RecoveryController.class) {
+                        return new RecoveryController(
+                                authService,
+                                this
+                        );
+                    }
 
+                    try {
+                        return type.getDeclaredConstructor()
+                                .newInstance();
+                    } catch (Exception e) {
+
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
+
+        Parent root =
+                loader.load();
+        stage.setResizable(true);
+        stage.setMinWidth(500);
+        stage.setMinHeight(500);
+        cambiarEscena(
+                root,
+                600,
+                500
+        );
+    }
+
+    public void showDashboardView()
+            throws IOException {
         FXMLLoader loader =
                 new FXMLLoader(
                         getClass().getResource(
                                 "/main/resources/view/dashboard-view.fxml"
                         )
                 );
+        DashboardService dashboardService =
+                new DashboardService(
+                        new EquipoRepository()
+                );
+        loader.setControllerFactory(
+                type -> {
 
-        loader.setControllerFactory(clazz -> {
-
-            if (clazz == DashboardController.class) {
-
-                EquipoRepository equipoRepository =
-                        new EquipoRepository();
-
-                DashboardService dashboardService =
-                        new DashboardService(
-                                equipoRepository
+                    if (type == DashboardController.class) {
+                        return new DashboardController(
+                                dashboardService,
+                                this
                         );
+                    }
 
-                return new DashboardController(
-                        dashboardService,
-                        this
-                );
-            }
+                    try {
+                        return type.getDeclaredConstructor()
+                                .newInstance();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
 
-            try {
-
-                return clazz
-                        .getDeclaredConstructor()
-                        .newInstance();
-
-            } catch (Exception e) {
-
-                throw new RuntimeException(
-                        "Error al crear el controlador: "
-                        + e.getMessage()
-                );
-            }
-        });
-
-        Parent root = loader.load();
-
+        Parent root =
+                loader.load();
+        stage.setResizable(true);
+        stage.setMinWidth(700);
+        stage.setMinHeight(500);
         cambiarEscena(
                 root,
                 900,
                 600
         );
-
-        stage.setResizable(true);
-
-        stage.setMinWidth(700);
-        stage.setMinHeight(500);
-
-        restaurarEstadoVentana();
     }
-
-    // =========================
-    // CAMBIO DE ESCENA
-    // =========================
 
     private void cambiarEscena(
             Parent root,
             double anchoInicial,
-            double altoInicial
-    ) {
+            double altoInicial) {
+        boolean estabaMostrando =
+                stage.isShowing();
 
-        guardarEstadoVentana();
+        boolean estabaMaximizada =
+                stage.isMaximized();
 
-        boolean primeraEscena =
-                Double.isNaN(windowWidth)
-                || Double.isNaN(windowHeight);
+        double x =
+                stage.getX();
 
-        Scene scene;
+        double y =
+                stage.getY();
 
-        if (primeraEscena) {
+        double ancho =
+                stage.getWidth();
 
-            scene =
-                    new Scene(
-                            root,
-                            anchoInicial,
-                            altoInicial
-                    );
+        double alto =
+                stage.getHeight();
 
+        boolean tamanoValido =
+                ancho > 0
+                && alto > 0
+                && !Double.isNaN(ancho)
+                && !Double.isNaN(alto);
+
+        Scene nuevaScene =
+                new Scene(root);
+        stage.setScene(nuevaScene);
+
+        if (!estabaMostrando
+                || !tamanoValido) {
+
+            stage.setWidth(
+                    anchoInicial
+            );
+            stage.setHeight(
+                    altoInicial
+            );
+            stage.centerOnScreen();
+
+        } else if (estabaMaximizada) {
+            stage.setMaximized(true);
         } else {
 
-            scene =
-                    new Scene(
-                            root,
-                            windowWidth,
-                            windowHeight
+            stage.setMaximized(false);
+
+            double nuevoAncho =
+                    Math.max(
+                            ancho,
+                            stage.getMinWidth()
                     );
+            double nuevoAlto =
+                    Math.max(
+                            alto,
+                            stage.getMinHeight()
+                    );
+            stage.setWidth(
+                    nuevoAncho
+            );
+            stage.setHeight(
+                    nuevoAlto
+            );
+            stage.setX(x);
+            stage.setY(y);
         }
-
-        stage.setScene(scene);
-
-        stage.show();
+        if (!stage.isShowing()) {
+            stage.show();
+        }
     }
 
-    // =========================
-    // GUARDAR ESTADO
-    // =========================
-
     private void guardarEstadoVentana() {
-
-        if (!stage.isShowing()) {
-            return;
-        }
-
         if (!stage.isMaximized()) {
+            windowX =
+                    stage.getX();
 
-            windowX = stage.getX();
-            windowY = stage.getY();
+            windowY =
+                    stage.getY();
 
-            windowWidth = stage.getWidth();
-            windowHeight = stage.getHeight();
+            windowWidth =
+                    stage.getWidth();
+
+            windowHeight =
+                    stage.getHeight();
         }
 
         windowMaximized =
                 stage.isMaximized();
     }
 
-    // =========================
-    // RESTAURAR ESTADO
-    // =========================
-
-    private void restaurarEstadoVentana() {
-
-        if (windowMaximized) {
-
-            stage.setMaximized(true);
-
-            return;
-        }
-
-        if (!Double.isNaN(windowX)
-                && !Double.isNaN(windowY)) {
-
-            stage.setX(windowX);
-            stage.setY(windowY);
-        }
-
-        if (!Double.isNaN(windowWidth)
-                && !Double.isNaN(windowHeight)) {
-
-            stage.setWidth(windowWidth);
-            stage.setHeight(windowHeight);
-        }
-    }
-
-    // =========================
-    // ALERTAS
-    // =========================
-
     public void showAlert(
-            String title,
-            String header,
-            String content,
-            AlertType type
-    ) {
+            String titulo,
+            String encabezado,
+            String contenido,
+            AlertType tipo) {
 
         Alert alert =
-                new Alert(type);
+                new Alert(tipo);
 
-        alert.initOwner(stage);
-
-        alert.setTitle(title);
-
-        alert.setHeaderText(header);
-
-        alert.setContentText(content);
+        alert.setTitle(titulo);
+        alert.setHeaderText(encabezado);
+        alert.setContentText(contenido);
 
         alert.showAndWait();
     }

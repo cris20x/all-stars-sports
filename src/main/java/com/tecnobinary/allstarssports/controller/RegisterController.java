@@ -50,7 +50,6 @@ public class RegisterController implements Initializable {
 
     @FXML
     private Button btnRegistrar;
-
     public RegisterController() {
         this.authService = null;
         this.sceneManager = null;
@@ -93,17 +92,13 @@ public class RegisterController implements Initializable {
 
         });
     }
-
     @FXML
     public void handleRegister() {
-
         if (authService == null
                 || sceneManager == null) {
             return;
         }
-
         try {
-
             String nombre =
                     txtFieldNombre.getText().trim();
 
@@ -126,7 +121,6 @@ public class RegisterController implements Initializable {
 
             String claveRecuperacion =
                     txtFieldClaveRecuperacion.getText();
-
             int idRol =
                     "Manager".equals(
                             comboTipoCuenta.getValue()
@@ -149,27 +143,21 @@ public class RegisterController implements Initializable {
                     request,
                     claveManager
             );
-
             sceneManager.showAlert(
                     "Registro exitoso",
                     "Cuenta creada",
                     "Tu cuenta fue registrada correctamente.",
                     AlertType.INFORMATION
             );
-
             sceneManager.showLoginView();
-
         } catch (RuntimeException e) {
-
             sceneManager.showAlert(
                     "Error de registro",
                     "No se pudo crear la cuenta",
                     e.getMessage(),
                     AlertType.ERROR
             );
-
         } catch (Exception e) {
-
             sceneManager.showAlert(
                     "Error inesperado",
                     "Ocurrió un problema",
@@ -181,13 +169,9 @@ public class RegisterController implements Initializable {
 
     @FXML
     public void handleBack() {
-
         try {
-
             sceneManager.showLoginView();
-
         } catch (Exception e) {
-
             sceneManager.showAlert(
                     "Error",
                     "No se pudo regresar",

@@ -12,17 +12,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
         stage.setTitle(APP_TITLE);
-
         Image appIcon =
                 new Image(
                         getClass()
                                 .getResourceAsStream(
-                                        "/main/resources/images/Logo-AllSS.png"
-                                )
-                );
-
+                                        "/main/resources/images/Logo-AllSS.png"));
         stage.getIcons().add(appIcon);
 
         SceneManager sceneManager =
