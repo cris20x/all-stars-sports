@@ -8,8 +8,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import main.java.com.tecnobinary.allstarssports.controller.DashboardController;
 import main.java.com.tecnobinary.allstarssports.controller.LoginController;
+import main.java.com.tecnobinary.allstarssports.controller.RegisterController;
 import main.java.com.tecnobinary.allstarssports.repository.AuthRepository;
 import main.java.com.tecnobinary.allstarssports.repository.EquipoRepository;
 import main.java.com.tecnobinary.allstarssports.service.AuthService;
@@ -21,16 +23,23 @@ public class SceneManager {
 
     private boolean splashMostrado = false;
 
-
     private double windowX = Double.NaN;
     private double windowY = Double.NaN;
+
+    private double windowWidth = Double.NaN;
+    private double windowHeight = Double.NaN;
+
+    private boolean windowMaximized = false;
 
     public SceneManager(Stage stage) {
         this.stage = stage;
     }
 
-    public void showSplashView() throws Exception {
+    // =========================
+    // SPLASH
+    // =========================
 
+    public void showSplashView() throws Exception {
 
         if (splashMostrado) {
             showLoginView();
@@ -39,24 +48,27 @@ public class SceneManager {
 
         splashMostrado = true;
 
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource(
-                        "/main/resources/view/splash-view.fxml"
-                )
-        );
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/main/resources/view/splash-view.fxml"
+                        )
+                );
 
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene =
+                new Scene(
+                        root,
+                        600,
+                        400
+                );
 
-        stage.setTitle("All-Stars Sports League");
         stage.setScene(scene);
 
-  
-        stage.centerOnScreen();
-
- 
         stage.setResizable(false);
+
+        stage.centerOnScreen();
 
         stage.show();
 
@@ -69,11 +81,12 @@ public class SceneManager {
 
             try {
 
-                guardarPosicion();
+                guardarEstadoVentana();
 
                 showLoginView();
 
             } catch (Exception e) {
+
                 e.printStackTrace();
             }
         });
@@ -81,15 +94,18 @@ public class SceneManager {
         pause.play();
     }
 
+    // =========================
+    // LOGIN
+    // =========================
+
     public void showLoginView() throws Exception {
 
-        guardarPosicion();
-
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource(
-                        "/main/resources/view/login-view.fxml"
-                )
-        );
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/main/resources/view/login-view.fxml"
+                        )
+                );
 
         loader.setControllerFactory(clazz -> {
 
@@ -99,7 +115,9 @@ public class SceneManager {
                         new AuthRepository();
 
                 AuthService authService =
-                        new AuthService(authRepository);
+                        new AuthService(
+                                authRepository
+                        );
 
                 return new LoginController(
                         authService,
@@ -124,37 +142,94 @@ public class SceneManager {
 
         Parent root = loader.load();
 
-        Scene scene = new Scene(
+        cambiarEscena(
                 root,
                 600,
                 400
         );
-
-        stage.setTitle(
-                "All-Stars Sports League"
-        );
-
-        stage.setScene(scene);
 
         stage.setResizable(true);
 
         stage.setMinWidth(500);
         stage.setMinHeight(350);
 
-        restaurarPosicion();
-
-        stage.show();
+        restaurarEstadoVentana();
     }
+
+    // =========================
+    // REGISTRO
+    // =========================
+
+    public void showRegisterView() throws Exception {
+
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/main/resources/view/register-view.fxml"
+                        )
+                );
+
+        loader.setControllerFactory(clazz -> {
+
+            if (clazz == RegisterController.class) {
+
+                AuthRepository authRepository =
+                        new AuthRepository();
+
+                AuthService authService =
+                        new AuthService(
+                                authRepository
+                        );
+
+                return new RegisterController(
+                        authService,
+                        this
+                );
+            }
+
+            try {
+
+                return clazz
+                        .getDeclaredConstructor()
+                        .newInstance();
+
+            } catch (Exception e) {
+
+                throw new RuntimeException(
+                        "Error al crear el controlador: "
+                        + e.getMessage()
+                );
+            }
+        });
+
+        Parent root = loader.load();
+
+        cambiarEscena(
+                root,
+                700,
+                600
+        );
+
+        stage.setResizable(true);
+
+        stage.setMinWidth(600);
+        stage.setMinHeight(580);
+
+        restaurarEstadoVentana();
+    }
+
+    // =========================
+    // DASHBOARD
+    // =========================
 
     public void showDashboardView() throws Exception {
 
-        guardarPosicion();
-
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource(
-                        "/main/resources/view/dashboard-view.fxml"
-                )
-        );
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(
+                                "/main/resources/view/dashboard-view.fxml"
+                        )
+                );
 
         loader.setControllerFactory(clazz -> {
 
@@ -191,35 +266,97 @@ public class SceneManager {
 
         Parent root = loader.load();
 
-        Scene scene = new Scene(
+        cambiarEscena(
                 root,
                 900,
                 600
         );
-
-        stage.setTitle(
-                "All-Stars Sports League - Dashboard"
-        );
-
-        stage.setScene(scene);
 
         stage.setResizable(true);
 
         stage.setMinWidth(700);
         stage.setMinHeight(500);
 
-        restaurarPosicion();
+        restaurarEstadoVentana();
+    }
+
+    // =========================
+    // CAMBIO DE ESCENA
+    // =========================
+
+    private void cambiarEscena(
+            Parent root,
+            double anchoInicial,
+            double altoInicial
+    ) {
+
+        guardarEstadoVentana();
+
+        boolean primeraEscena =
+                Double.isNaN(windowWidth)
+                || Double.isNaN(windowHeight);
+
+        Scene scene;
+
+        if (primeraEscena) {
+
+            scene =
+                    new Scene(
+                            root,
+                            anchoInicial,
+                            altoInicial
+                    );
+
+        } else {
+
+            scene =
+                    new Scene(
+                            root,
+                            windowWidth,
+                            windowHeight
+                    );
+        }
+
+        stage.setScene(scene);
 
         stage.show();
     }
 
-    private void guardarPosicion() {
+    // =========================
+    // GUARDAR ESTADO
+    // =========================
 
-        windowX = stage.getX();
-        windowY = stage.getY();
+    private void guardarEstadoVentana() {
+
+        if (!stage.isShowing()) {
+            return;
+        }
+
+        if (!stage.isMaximized()) {
+
+            windowX = stage.getX();
+            windowY = stage.getY();
+
+            windowWidth = stage.getWidth();
+            windowHeight = stage.getHeight();
+        }
+
+        windowMaximized =
+                stage.isMaximized();
     }
 
-    private void restaurarPosicion() {
+    // =========================
+    // RESTAURAR ESTADO
+    // =========================
+
+    private void restaurarEstadoVentana() {
+
+        if (windowMaximized) {
+
+            stage.setMaximized(true);
+
+            return;
+        }
 
         if (!Double.isNaN(windowX)
                 && !Double.isNaN(windowY)) {
@@ -227,7 +364,18 @@ public class SceneManager {
             stage.setX(windowX);
             stage.setY(windowY);
         }
+
+        if (!Double.isNaN(windowWidth)
+                && !Double.isNaN(windowHeight)) {
+
+            stage.setWidth(windowWidth);
+            stage.setHeight(windowHeight);
+        }
     }
+
+    // =========================
+    // ALERTAS
+    // =========================
 
     public void showAlert(
             String title,
@@ -236,12 +384,15 @@ public class SceneManager {
             AlertType type
     ) {
 
-        Alert alert = new Alert(type);
+        Alert alert =
+                new Alert(type);
 
         alert.initOwner(stage);
 
         alert.setTitle(title);
+
         alert.setHeaderText(header);
+
         alert.setContentText(content);
 
         alert.showAndWait();

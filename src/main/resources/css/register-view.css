@@ -4,14 +4,13 @@
 }
 
 .titulo {
-    -fx-font-size: 28px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-text-fill: #1b1f3b;
-    -fx-text-alignment: center;
 }
 
 .subtitulo {
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
     -fx-font-weight: bold;
     -fx-text-fill: #555a75;
 }
@@ -22,7 +21,8 @@
 }
 
 .text-field,
-.password-field {
+.password-field,
+.combo-box {
     -fx-background-color: white;
     -fx-border-color: #d5d7e2;
     -fx-border-radius: 5px;
@@ -31,7 +31,8 @@
 }
 
 .text-field:focused,
-.password-field:focused {
+.password-field:focused,
+.combo-box:focused {
     -fx-border-color: #1b1f3b;
 }
 
@@ -56,9 +57,6 @@
     -fx-background-radius: 5px;
 }
 
-.button-link {
-    -fx-background-color: transparent;
-    -fx-text-fill: #1b1f3b;
-    -fx-font-weight: normal;
-    -fx-padding: 4 8 4 8;
+.button-secundario:hover {
+    -fx-background-color: #e8e9f1;
 }
