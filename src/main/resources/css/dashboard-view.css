@@ -1,0 +1,169 @@
+.root {
+    -fx-background-color: #F4F7FB;
+    -fx-font-family: "Segoe UI";
+}
+
+.top-bar {
+    -fx-background-color: linear-gradient(to right, #0F172A, #172554);
+    -fx-padding: 18px 24px;
+    -fx-spacing: 16px;
+    -fx-alignment: center-left;
+}
+
+.titulo {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.subtitulo {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #BBF7D0;
+    -fx-background-color: rgba(22, 163, 74, 0.20);
+    -fx-background-radius: 14px;
+    -fx-padding: 7px 12px;
+}
+
+.top-bar .button {
+    -fx-background-color: #1E3A5F;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 14px;
+    -fx-cursor: hand;
+}
+
+.top-bar .button:hover {
+    -fx-background-color: #2563EB;
+}
+
+#btnGestionarLigas {
+    -fx-background-color: #16A34A;
+}
+
+#btnGestionarLigas:hover {
+    -fx-background-color: #15803D;
+}
+
+#btnGestionarMiembros:hover {
+    -fx-background-color: #2563EB;
+}
+
+#btnCerrarSesion {
+    -fx-background-color: #B91C1C;
+}
+
+#btnCerrarSesion:hover {
+    -fx-background-color: #DC2626;
+}
+
+.center {
+    -fx-background-color: #F4F7FB;
+}
+
+.equipos-actions .button {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 9px 14px;
+    -fx-cursor: hand;
+}
+
+#btnAgregarEquipo {
+    -fx-background-color: #16A34A;
+}
+
+#btnAgregarEquipo:hover {
+    -fx-background-color: #15803D;
+}
+
+#btnEditarEquipo {
+    -fx-background-color: #2563EB;
+}
+
+#btnEditarEquipo:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+#btnEliminarEquipo {
+    -fx-background-color: #B91C1C;
+}
+
+#btnEliminarEquipo:hover {
+    -fx-background-color: #DC2626;
+}
+
+.table-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D9E2EC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-padding: 0;
+    -fx-fixed-cell-size: 42px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #0F172A;
+    -fx-background-radius: 12px 12px 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 42px;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 0 12px;
+    -fx-text-fill: #1E293B;
+    -fx-font-size: 13px;
+}
+
+.table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #E8EEF5 transparent;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #F8FAFC;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #E8F5EC;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #BBF7D0;
+    -fx-text-background-color: #14532D;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: #64748B;
+}
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #94A3B8;
+    -fx-background-radius: 8px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #64748B;
+}

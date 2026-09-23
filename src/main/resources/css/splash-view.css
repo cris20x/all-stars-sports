@@ -1,0 +1,10 @@
+.splash-root {
+    -fx-background-color: #000000;
+}
+
+.autor {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+    -fx-text-fill: #ffffff;
+}
