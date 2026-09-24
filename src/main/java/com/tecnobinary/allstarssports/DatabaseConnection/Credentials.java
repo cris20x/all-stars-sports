@@ -1,0 +1,19 @@
+package main.java.com.tecnobinary.allstarssports.DatabaseConnection;
+
+public class Credentials {
+
+private static final String URL = "jdbc:mysql://localhost:3306/all_sports_league_in4bv";
+private static final String USER = "IN4BV";
+private static final String PASSWORD = "%IndiVA4";
+ 
+public static String getURL(){
+return URL;
+}
+public static String getUSER(){
+return USER;
+}
+public static String getPASSWORD(){
+return PASSWORD;
+}
+}
+

@@ -1,0 +1,420 @@
+.root {
+    -fx-background-color: #0B1220;
+    -fx-font-family: "Segoe UI";
+}
+
+/* =========================
+   BARRA SUPERIOR
+   ========================= */
+
+.top-bar {
+    -fx-background-color: linear-gradient(to right, #0B1220, #172554, #1E3A5F);
+    -fx-padding: 18px 24px;
+    -fx-spacing: 16px;
+    -fx-alignment: center-left;
+    -fx-border-color: transparent transparent #F97316 transparent;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.titulo {
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+    -fx-text-fill: linear-gradient(to right, #FFFFFF 0%, #FED7AA 55%, #F97316 100%);
+    -fx-effect: dropshadow(gaussian, rgba(249,115,22,0.45), 10, 0.25, 0, 1);
+    -fx-text-overflow: ellipsis;
+}
+
+.subtitulo {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #BBF7D0;
+    -fx-background-color: rgba(22, 163, 74, 0.20);
+    -fx-background-radius: 14px;
+    -fx-padding: 7px 12px;
+}
+
+/* =========================
+   BOTONES DE LA BARRA
+   ========================= */
+
+.top-bar .button {
+    -fx-background-color: #1E3A5F;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 14px;
+    -fx-cursor: hand;
+}
+
+.top-bar .button:hover {
+    -fx-background-color: #2563EB;
+}
+
+.boton-admin {
+    -fx-background-color: #16A34A;
+    -fx-border-color: #22C55E;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+.boton-admin:hover {
+    -fx-background-color: #15803D;
+}
+
+#btnCerrarSesion {
+    -fx-background-color: #B91C1C;
+}
+
+#btnCerrarSesion:hover {
+    -fx-background-color: #DC2626;
+}
+
+/* =========================
+   FONDO PRINCIPAL
+   ========================= */
+
+.center {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #0F172A,
+        #111C32,
+        #172554
+    );
+}
+
+/* =========================
+   TITULO EQUIPOS
+   ========================= */
+
+.seccion-titulo {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+/* =========================
+   BOTONES DE VISTA
+   ========================= */
+
+#btnVistaLista,
+#btnVistaCuadricula {
+    -fx-background-color: #1E293B;
+    -fx-text-fill: #CBD5E1;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-border-color: #334155;
+    -fx-border-radius: 8px;
+    -fx-padding: 9px 13px;
+    -fx-cursor: hand;
+}
+
+#btnVistaLista:hover,
+#btnVistaCuadricula:hover {
+    -fx-background-color: #334155;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Vista actualmente seleccionada */
+
+.boton-vista-activo {
+    -fx-background-color: #F97316 !important;
+    -fx-text-fill: #FFFFFF !important;
+    -fx-border-color: #FB923C !important;
+}
+
+/* =========================
+   BOTONES CRUD
+   ========================= */
+
+.equipos-actions {
+    -fx-padding: 5px 0 10px 0;
+}
+
+.equipos-actions .button {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 9px 14px;
+    -fx-cursor: hand;
+}
+
+.boton-participante {
+    -fx-background-color: #2563EB;
+}
+
+.boton-participante:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+/* =========================
+   TABLA
+   ========================= */
+
+.table-view {
+    -fx-background-color: #111827;
+    -fx-border-color: #334155;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-padding: 0;
+    -fx-fixed-cell-size: 42px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #172554;
+    -fx-background-radius: 12px 12px 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 42px;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 0 12px;
+    -fx-text-fill: #E2E8F0;
+    -fx-font-size: 13px;
+}
+
+.table-row-cell {
+    -fx-background-color: #111827;
+    -fx-border-color: transparent transparent #273449 transparent;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #172033;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #1E3A5F;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #334155;
+    -fx-text-background-color: #FFFFFF;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: #94A3B8;
+}
+
+/* =========================
+   CUADRICULA
+   ========================= */
+
+#gridEquipos {
+    -fx-background-color: transparent;
+    -fx-padding: 8px;
+}
+
+/* =========================
+   TARJETAS DE EQUIPOS
+   ========================= */
+
+.tarjeta-equipo {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #1E293B,
+        #172033
+    );
+
+    -fx-background-radius: 14px;
+
+    -fx-border-color: #334155;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+
+    -fx-padding: 16px;
+
+    -fx-pref-width: 230px;
+    -fx-min-width: 230px;
+    -fx-max-width: 230px;
+
+    -fx-min-height: 150px;
+
+    -fx-spacing: 6px;
+}
+
+.tarjeta-equipo:hover {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #24344D,
+        #1E293B
+    );
+
+    -fx-border-color: #F97316;
+    -fx-border-width: 2px;
+
+    -fx-effect: dropshadow(
+        three-pass-box,
+        rgba(249, 115, 22, 0.25),
+        12,
+        0,
+        0,
+        4
+    );
+}
+
+/* =========================
+   INFORMACION DE TARJETA
+   ========================= */
+
+.nombre-equipo {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+}
+
+.liga-equipo {
+    -fx-text-fill: #FB923C;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.id-equipo {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 12px;
+}
+
+/* =========================
+   BOTONES DENTRO DE TARJETAS
+   ========================= */
+
+.tarjeta-equipo .button {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 7px;
+    -fx-padding: 7px 12px;
+    -fx-cursor: hand;
+}
+
+.boton-editar {
+    -fx-background-color: #2563EB;
+}
+
+.boton-editar:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+.boton-eliminar {
+    -fx-background-color: #B91C1C;
+}
+
+.boton-eliminar:hover {
+    -fx-background-color: #DC2626;
+}
+
+.table-view .boton-editar,
+.table-view .boton-eliminar {
+    -fx-font-size: 11px;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 6px;
+}
+
+.mi-equipo-item {
+    -fx-text-fill: #E2E8F0;
+    -fx-font-size: 14px;
+    -fx-padding: 4px 0;
+}
+
+.mi-equipo-fila {
+    -fx-background-color: #1E293B;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 12px;
+}
+
+.mis-equipos-scroll,
+.mis-equipos-scroll .viewport {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+/* =========================
+   SCROLLPANE
+   ========================= */
+
+.scroll-contenido,
+.scroll-contenido .viewport {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+/* =========================
+   SCROLLBAR
+   ========================= */
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #475569;
+    -fx-background-radius: 8px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #F97316;
+}
+
+.scroll-bar .track {
+    -fx-background-color: #111827;
+}
+
+/* =========================
+   DIALOGOS
+   ========================= */
+
+.dialog-pane {
+    -fx-background-color: #172033;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #172554;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.dialog-pane .content {
+    -fx-background-color: #172033;
+}
+
+.dialog-pane .label {
+    -fx-text-fill: #E2E8F0;
+}
+
+.dialog-pane .text-field,
+.dialog-pane .combo-box {
+    -fx-background-color: #1E293B;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: #475569;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+}
+
+.dialog-pane .button {
+    -fx-background-color: #F97316;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-background-radius: 7px;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: #EA580C;
+}

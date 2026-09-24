@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/login-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.tecnobinary.allstarssports.controller.LoginController">
+
+    <!-- Logo fijo en la esquina superior izquierda -->
+    <ImageView fx:id="imgLogo" fitHeight="55.0" fitWidth="55.0" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+        <image>
+            <Image url="@../images/Logo-AllSS.png" />
+        </image>
+    </ImageView>
+
+    <!-- Contenido central -->
+    <VBox alignment="CENTER" maxWidth="360.0" spacing="10.0" styleClass="login-card" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="45.0" />
+        </padding>
+
+        <Label styleClass="titulo" text="Bienvenido a All Stars Sports" />
+
+        <Label styleClass="subtitulo" text="Inicia sesión" />
+
+        <VBox fillWidth="true" maxWidth="320.0" spacing="5.0">
+
+            <Label text="Correo electrónico" />
+
+            <TextField fx:id="txtFieldEmail" maxWidth="Infinity" promptText="correo@ejemplo.com" />
+        </VBox>
+
+        <VBox fillWidth="true" maxWidth="320.0" spacing="5.0">
+
+            <Label text="Contraseña" />
+
+            <PasswordField fx:id="txtFieldPassword" maxWidth="Infinity" promptText="Contraseña" />
+        </VBox>
+
+        <Button fx:id="btnIniciarSesion" maxWidth="320.0" mnemonicParsing="false" onAction="#handleLogin" text="Iniciar sesión" textFill="WHITE" />
+
+        <Button maxWidth="320.0" mnemonicParsing="false" onAction="#handleRegister" styleClass="button-secundario" text="Registrarse" />
+
+        <Button mnemonicParsing="false" onAction="#handleRecovery" styleClass="button-link" text="¿Olvidaste tu contraseña?" />
+
+    </VBox>
+
+</AnchorPane>
