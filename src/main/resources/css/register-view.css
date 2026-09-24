@@ -31,7 +31,8 @@
 }
 
 .text-field,
-.password-field {
+.password-field,
+.combo-box {
     -fx-background-color: #1E293B;
     -fx-text-fill: #FFFFFF;
     -fx-prompt-text-fill: #64748B;
@@ -42,8 +43,27 @@
     -fx-font-size: 13px;
 }
 
+.combo-box .list-cell {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: transparent;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1E293B;
+}
+
+.combo-box-popup .list-cell {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #1E293B;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #334155;
+}
+
 .text-field:focused,
-.password-field:focused {
+.password-field:focused,
+.combo-box:focused {
     -fx-border-color: #F97316;
 }
 
@@ -73,18 +93,4 @@
 .button-secundario:hover {
     -fx-background-color: #1E293B;
     -fx-border-color: #64748B;
-}
-
-.button-link {
-    -fx-background-color: transparent;
-    -fx-text-fill: #93C5FD;
-    -fx-font-weight: normal;
-    -fx-font-size: 12px;
-    -fx-padding: 4 8 4 8;
-    -fx-cursor: hand;
-}
-
-.button-link:hover {
-    -fx-text-fill: #F97316;
-    -fx-underline: true;
 }

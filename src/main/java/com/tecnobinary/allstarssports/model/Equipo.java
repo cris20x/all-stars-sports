@@ -6,6 +6,8 @@ public class Equipo {
     private int idLiga;
     private String nombreEquipo;
     private String nombreLiga;
+    private String imagenUrl;
+    private String deporte;
 
     public Equipo() {
     }
@@ -15,6 +17,15 @@ public class Equipo {
         this.idLiga = idLiga;
         this.nombreEquipo = nombreEquipo;
         this.nombreLiga = nombreLiga;
+    }
+
+    public Equipo(int idEquipo, int idLiga, String nombreEquipo,
+            String nombreLiga, String imagenUrl) {
+        this.idEquipo = idEquipo;
+        this.idLiga = idLiga;
+        this.nombreEquipo = nombreEquipo;
+        this.nombreLiga = nombreLiga;
+        this.imagenUrl = imagenUrl;
     }
 
     public int getIdEquipo() {
@@ -49,4 +60,19 @@ public class Equipo {
         this.nombreLiga = nombreLiga;
     }
 
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
+    public String getDeporte() {
+        return deporte;
+    }
+
+    public void setDeporte(String deporte) {
+        this.deporte = deporte;
+    }
 }
