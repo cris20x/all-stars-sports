@@ -54,40 +54,44 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void handleLogin() {
-        if (authService == null
-                || sceneManager == null) {
-            return;
-        }
-
-        try {
-            LoginDTORequest request =
-                    new LoginDTORequest(
-                            txtFieldEmail.getText(),
-                            txtFieldPassword.getText()
-                    );
-            LoginDTOResponse response =
-                    authService.login(request);
-
-            SesionUsuario.getInstance()
-                    .iniciarSesion(response);
-            sceneManager.showDashboardView();
-        } catch (RuntimeException e) {
-            sceneManager.showAlert(
-                    "Error de inicio de sesión",
-                    "No se pudo iniciar sesión",
-                    e.getMessage(),
-                    AlertType.ERROR
-            );
-        } catch (Exception e) {
-            sceneManager.showAlert(
-                    "Error inesperado",
-                    "Ocurrió un problema",
-                    e.getMessage(),
-                    AlertType.ERROR
-            );
-        }
+public void handleLogin() {
+    if (authService == null
+            || sceneManager == null) {
+        return;
     }
+
+    try {
+        LoginDTORequest request =
+                new LoginDTORequest(
+                        txtFieldEmail.getText(),
+                        txtFieldPassword.getText()
+                );
+
+        LoginDTOResponse response =
+                authService.login(request);
+
+        SesionUsuario.getInstance()
+                .iniciarSesion(response);
+
+        sceneManager.showDashboardView();
+
+    } catch (RuntimeException e) {
+        sceneManager.showAlert(
+                "Error de inicio de sesión",
+                "No se pudo iniciar sesión",
+                "Correo o contraseña incorrectos.",
+                AlertType.ERROR
+        );
+
+    } catch (Exception e) {
+        sceneManager.showAlert(
+                "Error inesperado",
+                "Ocurrió un problema",
+                "No se pudo iniciar sesión. Intenta nuevamente.",
+                AlertType.ERROR
+        );
+    }
+}
 
     @FXML
     public void handleRegister() {
