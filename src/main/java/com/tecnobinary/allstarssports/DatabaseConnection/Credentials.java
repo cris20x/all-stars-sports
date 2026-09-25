@@ -4,7 +4,7 @@ public class Credentials {
 
 private static final String URL = "jdbc:mysql://localhost:3306/all_sports_league_in4bv";
 private static final String USER = "IN4BV";
-private static final String PASSWORD = "%asdsf";
+private static final String PASSWORD = "%pipipi";
  
 public static String getURL(){
 return URL;

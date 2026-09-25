@@ -1,60 +1,90 @@
 .root {
-    -fx-background-color: #f4f5fb;
+    -fx-background-color: linear-gradient(to bottom right, #0B1220, #172554, #1E3A5F);
     -fx-font-family: "Segoe UI";
 }
 
+.login-card {
+    -fx-background-color: rgba(23, 32, 51, 0.85);
+    -fx-background-radius: 18px;
+    -fx-border-color: #334155;
+    -fx-border-width: 1px;
+    -fx-border-radius: 18px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.35), 24, 0, 0, 8);
+}
+
 .titulo {
-    -fx-font-size: 24px;
+    -fx-font-size: 26px;
     -fx-font-weight: bold;
-    -fx-text-fill: #1b1f3b;
+    -fx-text-fill: #FFFFFF;
+    -fx-text-alignment: center;
 }
 
 .subtitulo {
-    -fx-font-size: 17px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #555a75;
+    -fx-text-fill: #F97316;
 }
 
 .label {
-    -fx-text-fill: #1b1f3b;
+    -fx-text-fill: #CBD5E1;
     -fx-font-size: 13px;
 }
 
 .text-field,
 .password-field {
-    -fx-background-color: white;
-    -fx-border-color: #d5d7e2;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-padding: 8px;
+    -fx-background-color: #1E293B;
+    -fx-text-fill: #FFFFFF;
+    -fx-prompt-text-fill: #64748B;
+    -fx-border-color: #334155;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px;
+    -fx-font-size: 13px;
 }
 
 .text-field:focused,
 .password-field:focused {
-    -fx-border-color: #1b1f3b;
+    -fx-border-color: #F97316;
 }
 
 .button {
-    -fx-background-color: #1b1f3b;
+    -fx-background-color: #F97316;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-padding: 8 20 8 20;
-    -fx-background-radius: 5px;
+    -fx-font-size: 13px;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 8px;
     -fx-cursor: hand;
 }
 
 .button:hover {
-    -fx-opacity: 0.9;
+    -fx-background-color: #EA580C;
 }
 
 .button-secundario {
     -fx-background-color: transparent;
-    -fx-text-fill: #1b1f3b;
-    -fx-border-color: #1b1f3b;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: #475569;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
 }
 
 .button-secundario:hover {
-    -fx-background-color: #e8e9f1;
+    -fx-background-color: #1E293B;
+    -fx-border-color: #64748B;
+}
+
+.button-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: #93C5FD;
+    -fx-font-weight: normal;
+    -fx-font-size: 12px;
+    -fx-padding: 4 8 4 8;
+    -fx-cursor: hand;
+}
+
+.button-link:hover {
+    -fx-text-fill: #F97316;
+    -fx-underline: true;
 }

@@ -184,7 +184,7 @@ public class DashboardController implements Initializable {
         }
 
         lblBienvenida.setText(
-                "Bienvenido, "
+                "Usuario: "
                 + sesion.getNombre()
                 + " "
                 + sesion.getApellido()
@@ -2000,7 +2000,7 @@ public class DashboardController implements Initializable {
                     new FileChooser();
 
             chooser.setTitle(
-                    "Seleccionar imagen"
+                    "Agregar imagen"
             );
 
             chooser.getExtensionFilters()
