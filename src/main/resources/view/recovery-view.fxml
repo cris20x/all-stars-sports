@@ -10,100 +10,66 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0"
-            prefWidth="600.0"
-            stylesheets="@../css/recovery-view.css"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="main.java.com.tecnobinary.allstarssports.controller.RecoveryController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" stylesheets="@../css/recovery-view.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.tecnobinary.allstarssports.controller.RecoveryController">
 
-    <ImageView fitHeight="55.0"
-               fitWidth="55.0"
-               preserveRatio="true"
-               AnchorPane.leftAnchor="15.0"
-               AnchorPane.topAnchor="15.0">
+    <ImageView fitHeight="55.0" fitWidth="55.0" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
 
         <image>
-            <Image url="@../images/Logo-AllSS.png"/>
+            <Image url="@../images/Logo-AllSS.png" />
         </image>
 
     </ImageView>
 
-    <VBox alignment="CENTER"
-          spacing="10.0"
-          maxWidth="360.0"
-          AnchorPane.leftAnchor="0.0"
-          AnchorPane.rightAnchor="0.0"
-          AnchorPane.topAnchor="0.0"
-          AnchorPane.bottomAnchor="0.0">
+    <VBox alignment="CENTER" maxWidth="360.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
         <padding>
-            <Insets top="35.0"
-                    right="20.0"
-                    bottom="20.0"
-                    left="20.0"/>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="35.0" />
         </padding>
 
-        <Label styleClass="titulo"
-               text="Recuperar cuenta"/>
+        <Label styleClass="titulo" text="Recuperar cuenta" />
 
-        <Label styleClass="subtitulo"
-               text="Restablece tu contraseña"/>
+        <Label styleClass="subtitulo" text="Restablece tu contraseña" />
+      <ImageView fitHeight="49.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/editorUsuario.png" />
+         </image>
+      </ImageView>
 
-        <VBox spacing="5.0"
-              maxWidth="320.0">
+        <VBox maxWidth="320.0" spacing="5.0">
 
-            <Label text="Correo electrónico"/>
+            <Label text="Correo electrónico" />
 
-            <TextField fx:id="txtFieldEmail"
-                       promptText="correo@ejemplo.com"
-                       maxWidth="Infinity"/>
-
-        </VBox>
-
-        <VBox spacing="5.0"
-              maxWidth="320.0">
-
-            <Label text="Clave de recuperación"/>
-
-            <PasswordField fx:id="txtFieldClaveRecuperacion"
-                           promptText="Clave de recuperación"
-                           maxWidth="Infinity"/>
+            <TextField fx:id="txtFieldEmail" maxWidth="Infinity" promptText="correo@ejemplo.com" />
 
         </VBox>
 
-        <VBox spacing="5.0"
-              maxWidth="320.0">
+        <VBox maxWidth="320.0" spacing="5.0">
 
-            <Label text="Nueva contraseña"/>
+            <Label text="Clave de recuperación" />
 
-            <PasswordField fx:id="txtFieldNuevaPassword"
-                           promptText="Nueva contraseña"
-                           maxWidth="Infinity"/>
+            <PasswordField fx:id="txtFieldClaveRecuperacion" maxWidth="Infinity" promptText="Clave de recuperación" />
 
         </VBox>
 
-        <VBox spacing="5.0"
-              maxWidth="320.0">
+        <VBox maxWidth="320.0" spacing="5.0">
 
-            <Label text="Confirmar contraseña"/>
+            <Label text="Nueva contraseña" />
 
-            <PasswordField fx:id="txtFieldConfirmarPassword"
-                           promptText="Confirmar contraseña"
-                           maxWidth="Infinity"/>
+            <PasswordField fx:id="txtFieldNuevaPassword" maxWidth="Infinity" promptText="Nueva contraseña" />
 
         </VBox>
 
-        <Button mnemonicParsing="false"
-                onAction="#handleRecovery"
-                text="Cambiar contraseña"
-                maxWidth="320.0"/>
+        <VBox maxWidth="320.0" spacing="5.0">
 
-        <Button styleClass="button-secundario"
-                mnemonicParsing="false"
-                onAction="#handleBack"
-                text="Volver al inicio de sesión"
-                maxWidth="320.0"/>
+            <Label text="Confirmar contraseña" />
+
+            <PasswordField fx:id="txtFieldConfirmarPassword" maxWidth="Infinity" promptText="Confirmar contraseña" />
+
+        </VBox>
+
+        <Button maxWidth="320.0" mnemonicParsing="false" onAction="#handleRecovery" text="Cambiar contraseña" />
+
+        <Button maxWidth="320.0" mnemonicParsing="false" onAction="#handleBack" styleClass="button-secundario" text="Volver al inicio de sesión" />
 
     </VBox>
 

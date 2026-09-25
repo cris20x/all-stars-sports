@@ -3,9 +3,6 @@
     -fx-font-family: "Segoe UI";
 }
 
-/* =========================
-   BARRA SUPERIOR
-   ========================= */
 
 .top-bar {
     -fx-background-color: linear-gradient(to right, #0B1220, #172554, #1E3A5F);
@@ -33,9 +30,6 @@
     -fx-padding: 7px 12px;
 }
 
-/* =========================
-   BOTONES DE LA BARRA
-   ========================= */
 
 .top-bar .button {
     -fx-background-color: #1E3A5F;
@@ -304,18 +298,22 @@
 
 .boton-editar {
     -fx-background-color: #2563EB;
+    -fx-text-fill: #FFFFFF;
 }
 
 .boton-editar:hover {
     -fx-background-color: #1D4ED8;
+    -fx-text-fill: #FFFFFF;
 }
 
 .boton-eliminar {
     -fx-background-color: #B91C1C;
+    -fx-text-fill: #FFFFFF;
 }
 
 .boton-eliminar:hover {
     -fx-background-color: #DC2626;
+    -fx-text-fill: #FFFFFF;
 }
 
 .table-view .boton-editar,
@@ -323,6 +321,8 @@
     -fx-font-size: 11px;
     -fx-padding: 5px 10px;
     -fx-background-radius: 6px;
+    -fx-text-fill: #FFFFFF;
+    
 }
 
 .mi-equipo-item {

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="700.0" stylesheets="@../css/register-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.tecnobinary.allstarssports.controller.RegisterController">
+<AnchorPane prefHeight="600.0" prefWidth="700.0" stylesheets="@../css/register-view.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.tecnobinary.allstarssports.controller.RegisterController">
 
     <ImageView fx:id="imgLogo" fitHeight="55.0" fitWidth="55.0" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
 
@@ -22,6 +22,7 @@
         </image>
 
     </ImageView>
+      
 
     <VBox alignment="CENTER" maxWidth="420.0" spacing="10.0" styleClass="login-card" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
@@ -32,6 +33,11 @@
         <Label styleClass="titulo" text="Crear una cuenta" />
 
         <Label styleClass="subtitulo" text="Regístrate en All Stars Sports" />
+      <ImageView fitHeight="79.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/registroUsuario.png" />
+         </image>
+      </ImageView>
 
         <HBox maxWidth="360.0" spacing="10.0">
 
@@ -107,5 +113,7 @@
         <Button maxWidth="360.0" mnemonicParsing="false" onAction="#handleBack" styleClass="button-secundario" text="Volver al inicio de sesión" />
 
     </VBox>
+    
+    
 
 </AnchorPane>
